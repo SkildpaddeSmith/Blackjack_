@@ -1,8 +1,45 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model Blackjack.Models.LoginModel
+@using static Blackjack.SQL.SQL_Connection;
+@using Blackjack.Services;
+@using Npgsql;
+@using System.Web;
+
+
+
+
+@{
+    ViewData["Title"] = "Login";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<link rel="stylesheet" href="~/css/site.css" />
+
+<body>
+
+
+    <div id="userprompt">
+
+        <div class="qstd m">
+
+            <form asp-action="ProcessLogin">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="fixed">
+                    <p class="qst up1">Username:</p>
+                    <input asp-for="Username" class="form-control user-input" />
+
+                    <p class="qst up1">Password:</p>
+                    <input asp-for="Password" type="password" class="form-control pass-input" />
+
+                    <center><input type="submit" value="Go!" class="btn btnprimary" /></center>
+                </div>
+            </form>
+        </div>
+        <form asp-area="" asp-controller="Home" asp-action="SignUp">
+            <div>
+                <input onclick="InvalidCredentials()" type="submit" value="Sign Up!" id="signUp" class="btn btnprimary" />
+            </div>
+        </form>
+
+    </div>
+
+</body>
+
